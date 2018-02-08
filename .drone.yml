@@ -1,0 +1,22 @@
+pipeline:
+  publish-image:
+    image: plugins/docker
+    repo: prontopro/ansible-lint
+    dockerfile: Dockerfile
+    secrets: [docker_username, docker_password]
+    tags:
+      - latest
+      - ${DRONE_TAG}
+    when:
+      event:
+        - tag
+
+  notify:
+    image: plugins/slack
+    channel: tech-feed
+    username: drone
+    secrets: [slack_webhook]
+    template: Docker image for ansible-lint:${DRONE_TAG} has been published.
+    when:
+      event:
+        - tag
