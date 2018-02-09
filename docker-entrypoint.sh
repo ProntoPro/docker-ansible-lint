@@ -1,3 +1,3 @@
 #!/bin/bash
 
-find . -name "*.yml" | xargs -r ansible-lint --force-color
+find ${1:-.} -name "*.yml" | xargs -r ansible-lint --force-color
