@@ -1,8 +1,8 @@
-FROM python:3.6-slim-stretch
+FROM python:3.7-slim-stretch
 
 RUN pip install --upgrade pip && \
     pip install ansible && \
-    pip install ansible-lint==3.4.23
+    pip install ansible-lint==4.1.0
 
 ADD docker-entrypoint.sh /opt
 
