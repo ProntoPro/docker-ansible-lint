@@ -1,0 +1,83 @@
+repository:
+  name: docker-ansible-lint
+  description: Source for `prontopro/docker-ansible-lint` docker image
+  private: true
+  default_branch: master
+  has_issues: true
+  has_wiki: false
+  has_downloads: false
+  allow_squash_merge: true
+  allow_merge_commit: true
+  allow_rebase_merge: false
+
+# NOTE: The APIs needed for this plugin are not supported yet by GitHub Apps
+# https://developer.github.com/v3/apps/available-endpoints/
+# teams:
+#   - name: tech
+#     permission: push
+#   - name: qa
+#     permission: push
+#   - name: product
+#     permission: pull
+
+branches:
+  - name: master
+    protection:
+      required_pull_request_reviews:
+        required_approving_review_count: 1
+        dismiss_stale_reviews: false
+        require_code_owner_reviews: true
+        dismissal_restrictions:
+          users: []
+          teams: []
+      required_status_checks:
+        strict: false
+        contexts:
+          - continuous-integration/drone/pr
+          - continuous-integration/drone/push
+          - rowdy/labels
+          - rowdy/milestone
+      enforce_admins: true
+      restrictions:
+        users: []
+        teams:
+          - teamleaders
+          - mergers
+
+labels:
+  - name: "squad/CONSUMER"
+    color: b0bec5
+  - name: "squad/GROWTH"
+    color: b0bec5
+  - name: "squad/MERCHANT"
+    color: b0bec5
+
+  - name: kind/RELEASE
+    color: 01deff
+  - name: kind/ENHANCEMENT
+    color: 006b75
+  - name: kind/CLEANUP
+    color: 608000
+  - name: kind/CHANGE-REQUEST
+    color: ffab40
+  - name: kind/BUG
+    color: fc2929
+  - name: kind/DEFECT
+    color: e99695
+  - name: kind/FEATURE
+    color: 5319e1
+
+  - name: status/CR-NEEDED
+    color: fbca04
+  - name: status/CR-ISSUES-FOUND
+    color: d93f0b
+  - name: status/OK-TO-MERGE
+    color: 00cc00
+  - name: status/HELP-WANTED
+    color: 9c27b0
+  - name: status/NEEDS-REBASE
+    color: 666633
+  - name: status/ON-HOLD
+    color: 365181
+  - name: status/WIP
+    color: bfd4f2
